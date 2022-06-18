@@ -1,2 +1,4 @@
 # cims-northcrest
-Downsview project management application prototype
+
+See website here:
+https://nicoarellano.github.io/cims-northcrest/src/
