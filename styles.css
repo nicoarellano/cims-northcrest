@@ -1,0 +1,275 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --border-radius: 10px;
+  --primary-color: white;
+  --secondary-color: #bbb;
+  --primary-color-transp1: rgba(170, 170, 170, 0.8);
+  --primary-color-transp2: rgba(170, 170, 170, 0.7);
+  --primary-color-transp3: rgba(170, 170, 170, 0.6);
+  --blue-color: #1ca6f4;
+}
+
+html,
+body {
+  overflow: hidden;
+  font-family: sans-serif;
+  color: black;
+}
+
+#myChart {
+  background-color: white;
+  border-radius: var(--border-radius);
+  margin-top: 15px;
+  margin-right: 15px;
+  padding: 10px;
+}
+
+.header {
+  font-size: 35px;
+  background-color: black;
+  color: white;
+  height: 55px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header a{
+  display: flex;
+}
+
+.title{
+  display: flex;
+}
+
+.menu {
+  z-index: 1;
+  position: absolute;
+  overflow:auto;
+  max-width: 45vw;
+  top: 55px;
+  background-color: var(--primary-color-transp3);
+  padding: 15px;
+  box-shadow: 0 0 10px 1px #000;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu:hover {
+  background-color: var(--primary-color-transp1);
+}
+
+.menu:active {
+  background-color: var(--primary-color-transp2);
+}
+
+.menu img {
+  margin: auto;
+  width: 95%;
+}
+
+.menu p{
+margin: 5px;
+padding: 10px;
+border-radius: var(--border-radius);
+font-size: 2rem;
+}
+
+.left {
+  left: 0px;
+  border-radius: 0 0 var(--border-radius) 0 ;
+}
+
+.right {
+  right: 0px;
+  max-width: 45vw;
+  border-radius: 0 0 0 var(--border-radius);
+}
+
+.years{
+  text-align: center;
+  display: inline;
+}
+
+.legend {
+  text-align: center;
+  background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,255,0,1) 50%, rgba(0,255,0,1) 100%);
+  padding: 10px;
+  margin: 5px;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  max-width: 90%;
+  font-size: large;
+  font-weight: bold;
+}
+
+.data{
+  max-width: 40%;
+  text-align: center;
+  background-color: black;
+  color: rgba(251, 184, 41);
+  padding: 7px;
+  border-radius: var(--border-radius)
+}
+
+.button {
+  background-color: black;
+  color: var(--secondary-color);
+  width: 98%;
+  height: 40px;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.button:hover {
+  background-color: rgb(20, 20, 20);
+}
+.button:active{
+  background-color:rgb(40, 40, 40)
+}
+
+.slidecontainer {
+  width: 133%; /* Width of the outside container */
+  margin: 0 auto;
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  margin: 0 auto;
+  text-align:justify;
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 20px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 20px; /* Set a specific slider handle width */
+  height: 20px; /* Slider handle height */
+  background: black; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+/* CESIUM CSS ####################################################################################################################################### */ 
+
+.cesium-widget canvas {
+  width: 100vw;
+  height: 100vh;
+  touch-action: none;
+}
+
+.cesium-infoBox {
+  display: block;
+  position: absolute;
+  font-size: 18px;
+  width: 45vw;
+  max-height: 50vh;
+  bottom: 0px;
+  left: 0;
+  background: var(--primary-color-transp3);
+  border: 1px solid #444;
+  border-right: none;
+  border-top-right-radius: var(--border-radius);
+  box-shadow: 0 0 10px 1px #000;
+  transform: translate(0, 100%);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.2s, opacity 0.2s ease-in, transform 0.2s ease-in;
+}
+.cesium-infoBox-visible {
+  transform: translate(0, 0);
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+.cesium-infoBox-title {
+  display: block;
+  font-size: 18px;
+  padding: 5px 30px 5px 25px;
+  background: black;
+  color: var(--primary-color);
+  border-top-right-radius: var(--border-radius);
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: content-box;
+}
+.cesium-infoBox-bodyless .cesium-infoBox-title {
+  border-bottom-left-radius: var(--border-radius);
+}
+button.cesium-infoBox-camera {
+  display: block;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 22px;
+  height: 22px;
+  background: 0 0;
+  border-color: transparent;
+  border-radius: 3px;
+  padding: 0 5px;
+  margin: 0;
+}
+button.cesium-infoBox-close {
+  display: block;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 18px;
+  background: 0 0;
+  border: none;
+  border-radius: 2px;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0 5px;
+  margin: 0;
+  color: #edffff;
+}
+button.cesium-infoBox-close:focus {
+  background: var(--primary-color-transp3);
+  outline: 0;
+}
+button.cesium-infoBox-close:hover {
+  background: var(--primary-color-transp3);
+  color: #000;
+}
+button.cesium-infoBox-close:active {
+  background: #a00;
+  color: #000;
+}
+.cesium-infoBox-bodyless .cesium-infoBox-iframe {
+  display: none;
+  max-height: 10vh;
+}
+.cesium-infoBox-iframe {
+  border: none;
+  max-height: 80% !important;
+  width: 100%;
+  width: calc(100% - 2px);
+}
